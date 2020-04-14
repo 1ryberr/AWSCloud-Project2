@@ -29,7 +29,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     res.status(201).sendFile(url);
      image_ar.push(url);
   
-    if(image_ar.length > 1){
+    if(image_ar.length >= 1){
       try { 
         await deleteLocalFiles(image_ar);
       }
@@ -79,13 +79,3 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   } );
 })();
 
-
-
-
-// var paramsString2 = "?query=value";
-// var searchParams2 = new URLSearchParams(paramsString2);
-// searchParams2.has("query"); // true 
-
-// var url = new URL("http://example.com/search?query=%40");
-// var searchParams3 = new URLSearchParams(url.search);
-// searchParams3.has("query") // true
