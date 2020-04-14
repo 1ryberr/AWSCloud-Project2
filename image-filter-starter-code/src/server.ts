@@ -1,4 +1,4 @@
-import express from 'express';
+import express,{Request,Response} from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
@@ -14,8 +14,8 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   app.use(bodyParser.json());
 
 
-
-  app.get( "/filteredimage", async ( req, res ) => {
+  
+  app.get( "/filteredimage", async ( req: Request, res: Response ) => {
     const qery_url = req.query.image_url;
     var image_ar: string[] = new Array(); 
     let url: string;
@@ -29,7 +29,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     res.status(201).sendFile(url);
      image_ar.push(url);
   
-    if(image_ar.length >= 1){
+    if(image_ar.length > 1){
       try { 
         await deleteLocalFiles(image_ar);
       }
@@ -79,3 +79,13 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   } );
 })();
 
+
+
+
+// var paramsString2 = "?query=value";
+// var searchParams2 = new URLSearchParams(paramsString2);
+// searchParams2.has("query"); // true 
+
+// var url = new URL("http://example.com/search?query=%40");
+// var searchParams3 = new URLSearchParams(url.search);
+// searchParams3.has("query") // true
